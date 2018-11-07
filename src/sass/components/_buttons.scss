@@ -1,0 +1,65 @@
+a.button,
+a.jf-button,
+input[type="submit"],
+button,
+.button	{
+	display: inline-block;
+	color: $color-brand-red;
+	border: 2px solid $color-brand-red;
+	background-color: #fff;
+	border-radius: 18px;
+	padding: 6px 6px 7px;
+	width: 200px;
+	max-width: 100%;
+	font-family: $font-stack-sans-bold;
+	font-size: 16px;
+	text-decoration: none;
+	text-align: center;
+
+	&:hover	{
+		background-color: $color-brand-red;
+		color: #fff;
+	}
+
+	@media (max-width: 575.98px) {
+		width: auto;
+		padding-left: 18px;
+		padding-right: 18px;
+	}
+}
+a.button.button-inverse,
+a.jf-button.button-inverse,
+input[type="submit"].button-inverse,
+button.button-inverse,
+.button-inverse	{
+	color: #fff;
+	background-color: $color-brand-red;
+
+	&:hover	{
+		background-color: #fff;
+		color: $color-brand-red;
+	}
+}
+
+
+.webform-submission-form a.button,
+.webform-submission-form a.jf-button,
+.webform-submission-form input[type="submit"],
+.webform-submission-form button  {
+  @extend .button-inverse;
+}
+
+
+
+html.ie11 a.button,
+html.ie11 a.jf-button,
+html.ie11 input[type="submit"],
+html.ie11 button {
+  padding: 9px 6px 4px;
+}
+html.win.chrome a.button,
+html.win.chrome a.jf-button,
+html.win.chrome input[type="submit"],
+html.win.chrome button {
+  padding: 7px 6px 6px;
+}

@@ -1,0 +1,79 @@
+input	{
+	cursor: pointer;
+}
+
+.body-main form	{
+	background-color: #D0D3D4;
+	padding: 25px;
+
+	.form-item	{
+		margin: 0 0 7px;
+
+		input,
+		textarea	{
+
+			// from bootstrap
+			display: block;
+			width: 100%;
+			height: calc(2.25rem + 2px);
+			padding: .375rem .75rem;
+			font-size: 1rem;
+			line-height: 1.5;
+			color: #495057;
+			background-color: #fff;
+			background-clip: padding-box;
+			border: 1px solid #ced4da;
+			border-radius: .25rem;
+			transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+			// override
+			border-radius: 0;
+		}
+
+		input[type="checkbox"]	{
+			width: auto;
+			display: inline-block;
+			height: auto;
+		}
+
+		input[type="checkbox"]	{
+			position: relative;
+			top: -3px;
+		}
+
+		// don't group these
+		input::-webkit-input-placeholder { color: #000; }  /* WebKit, Blink, Edge */
+		input:-moz-placeholder { color: #000; }  /* Mozilla Firefox 4 to 18 */
+		input::-moz-placeholder { color: #000; }  /* Mozilla Firefox 19+ */
+		input:-ms-input-placeholder { color: #000; }  /* Internet Explorer 10-11 */
+		input::-ms-input-placeholder { color: #000; }  /* Microsoft Edge */
+
+		textarea::-webkit-input-placeholder { color: #000; }  /* WebKit, Blink, Edge */
+		textarea:-moz-placeholder { color: #000; }  /* Mozilla Firefox 4 to 18 */
+		textarea::-moz-placeholder { color: #000; }  /* Mozilla Firefox 19+ */
+		textarea:-ms-input-placeholder { color: #000; }  /* Internet Explorer 10-11 */
+		textarea::-ms-input-placeholder { color: #000; }  /* Microsoft Edge */
+	}
+
+	.form--element--label-wrapper {
+	  font-size: 20px;
+	  position: relative;
+	  top: 5px;
+	  font-family: $font-stack-sans-bold;
+
+	  label {
+	    margin-bottom: 3px;
+	  }
+	}
+
+	.form--element--content-wrapper {
+	  .description  {
+	    font-size: 14px;
+	    padding: 3px 0 0 11px;
+	  }
+	}
+
+	.form-actions	{
+		margin-top: 18px;
+	}
+}

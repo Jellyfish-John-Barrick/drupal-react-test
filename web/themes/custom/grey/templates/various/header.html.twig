@@ -1,0 +1,35 @@
+<!-- START: .body-header -->
+<header class="body-header">
+
+  <div class="container">
+
+    <!-- START: .row -->
+    <div class="row">
+
+      {% if page.header_content %}
+      <!-- START: column -->
+      <div class="col-sm-6">
+
+        {{ page.header_content }}
+
+      </div>
+      <!-- END: column -->
+      {% endif %}
+
+      {% if page.header_content_right %}
+      <!-- START: column -->
+      <div class="col-sm-6">
+
+        {{ page.header_content_right }}
+
+      </div>
+      <!-- END: column -->
+      {% endif %}
+
+    </div>
+    <!-- END: .row -->
+
+  </div>
+
+</header>
+<!-- END: .body-header -->

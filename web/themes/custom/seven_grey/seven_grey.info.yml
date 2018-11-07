@@ -1,0 +1,36 @@
+name: Seven - Grey
+type: theme
+base theme: seven
+description: 'Customization of core Seven theme, for greyscreen rapid prototyping.'
+alt text: 'Customization of core Seven theme, for greyscreen rapid prototyping.'
+package: Custom
+#version: VERSION
+core: 8.x
+libraries:
+ - seven/global-styling
+ - seven_grey/global-styling
+
+libraries-extend:
+  core/ckeditor:
+    - seven/ckeditor-dialog
+    - seven_grey/ckeditor-dialog
+  core/drupal.vertical-tabs:
+    - seven/vertical-tabs
+  core/jquery.ui:
+    - seven/seven.jquery.ui
+  tour/tour-styling:
+    - seven/tour-styling
+regions:
+  header: 'Header'
+  pre_content: 'Pre-content'
+  breadcrumb: Breadcrumb
+  highlighted: Highlighted
+  help: Help
+  content: Content
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'
+  sidebar_first: 'First sidebar'
+  sidebar_right: 'Right sidebar'
+  hidden: Hidden
+regions_hidden:
+  - sidebar_first

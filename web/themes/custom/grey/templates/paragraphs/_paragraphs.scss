@@ -1,0 +1,404 @@
+/* for Drupal Paragraphs module */
+
+.page-content-paragraphs.container	{
+  position: relative;
+  top: -1px; // empty 'page-content-without-paragraphs' causes 1px space
+
+  padding-left: 0;
+  padding-right: 0;
+
+	> .row	{
+		padding-left: 0;
+		padding-right: 0;
+		margin-left: 0;
+		margin-right: 0;
+
+		.col-lg-12	{
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}
+}
+
+.field--name-field-paragraphs-demo  {
+}
+
+
+
+
+// paragraph--text
+.paragraph--text	{
+	@include paragraph-padding-40;
+	padding-top: 50px;
+}
+
+
+
+// paragraph--image-text
+.paragraph--image-text	{
+	@include display-flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: flex-start; // was centered previously....
+
+	.field-image,
+	.field-wysiwyg	{
+	}
+	.field-image	{
+		width: 50%;
+		text-align: right;
+
+		img	{
+			@include responsive-image; // max-width, height
+		}
+	}
+	.field-wysiwyg	{
+		width: 50%;
+		padding: 0 40px;
+
+		p	{
+			margin-bottom: 1rem;
+		}
+	}
+
+	&.image-to-the-left	{
+		.field-wysiwyg	{
+			padding-left: 27px;
+			width: 36%;
+		}
+		.field-image	{
+			width: 64%;
+			img	{
+				width: 100%;
+			}
+		}
+	}
+
+	&.image-to-the-right	{
+		.field-wysiwyg	{
+			padding-right: 27px;
+			padding-top: 30px;
+			padding-bottom: 30px;
+			width: 55%;
+		}
+		.field-image	{
+			width: 45%;
+		}
+	}
+
+	@media (max-width: 991.98px) {
+		&.image-to-the-left	{
+			align-items: flex-start;
+
+			.field-wysiwyg,
+			.field-image	{
+				width: 50%;
+			}
+			.field-wysiwyg	{
+				padding: 0px 40px 0;
+			}
+		}
+	}
+
+	@media (max-width: 767.98px) {
+		padding-top: 40px;
+		padding-bottom: 40px;
+
+		.field-image,
+		.field-wysiwyg	{
+			width: 100%;
+			padding: 0;
+		}
+		.field-image	{
+			text-align: center;
+		}
+
+		&.image-to-the-right	{
+			flex-direction: column-reverse;
+
+			.field-wysiwyg,
+			.field-image	{
+				width: 100%;
+			}
+			.field-wysiwyg	{
+				padding: 0 40px 30px;
+			}
+		}
+
+		&.image-to-the-left	{
+			flex-direction: column;
+
+			.field-wysiwyg,
+			.field-image	{
+				width: 100%;
+			}
+			.field-wysiwyg	{
+				padding: 30px 40px 0;
+			}
+		}
+	}
+
+	@media (max-width: 575.98px) {
+
+		&.image-to-the-right	{
+
+			.field-wysiwyg	{
+				padding-left: 18px;
+				padding-right: 18px;
+			}
+
+		}
+
+		&.image-to-the-left	{
+
+			.field-wysiwyg	{
+				padding-left: 18px;
+				padding-right: 18px;
+			}
+
+		}
+
+	}
+
+}
+
+
+
+// paragraph--webform
+.paragraph--webform	{
+	@include paragraph-padding-40;
+}
+
+
+
+// paragraph--image-headline
+.paragraph--image-headline	{
+
+	.field-headline	{
+		h1,
+		h2	{
+			color: #fff;
+			@include big-headline; // font-size, line-height
+			margin: 0;
+      html[lang='zh-hans'] &  {
+        line-height: 1.15;
+      }
+		}
+	}
+
+	&.headline-under-image	{
+		.field-image	{
+			img	{
+				@include responsive-image; // max-width, height
+				width: 100%;
+			}
+		}
+		.field-headline	{
+			background-color: $color-brand-red;
+			padding: 70px 40px;
+      @media (max-width: 575.98px)	{
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+		}
+	}
+
+	&.headline-on-image	{
+
+		position: relative;
+
+		.field-image	{
+
+      min-height: 150px; // give impression on 3G there is content, until image loads
+      background-color: #777; // give impression on 3G there is content, until image loads
+
+			img	{
+				width: 100%;
+				@include responsive-image; // max-width, height
+			}
+		}
+
+		.field-headline	{
+			position: absolute;
+			bottom: 50px;
+			left: 40px;
+			color: #fff;
+			padding-right: 40px;
+      @media (max-width: 575.98px)	{
+        left: 18px;
+        padding-right: 18px;
+      }
+		}
+
+	}
+
+	&.has-mobile-image  {
+    .field--name-field-ih-mobile-image  {
+      //display: none; // causing problem with Blazy
+    }
+    @media (max-width: 767.97px)	{
+      .field--name-field-ih-image  {
+        @include visually-hidden;
+      }
+    }
+    @media (min-width: 767.98px)	{
+      .field--name-field-ih-mobile-image  {
+        @include visually-hidden;
+      }
+    }
+	}
+
+	@media (max-width: 991.98px) {
+		&.headline-under-image	{
+			.field-image	{
+			}
+			.field-headline	{
+				padding-top: 40px;
+				padding-bottom: 40px;
+			}
+		}
+	}
+
+}
+
+
+
+// paragraph--boxes
+.paragraph--boxes	{
+	padding: 85px 0 50px;
+  @include paragraph-padding-40;
+
+	p {
+	  margin-bottom: 1rem;
+	}
+  p.no-bottom-margin  {
+    margin-bottom: 0px;
+  }
+
+  .boxes-field-description  {
+    //margin-bottom: 0;
+    margin-bottom: 1rem; // compensate for matchHeight.js which collapses the inner <p> height
+  }
+
+	.boxes-child-paragraph-container  {
+	  text-align: center;
+	  margin-bottom: 50px;
+	}
+
+	img {
+	  max-width: 100%;
+	}
+
+  // when p--text is a child of p--boxes
+  // this is specific to align "featured products"
+  .paragraph--text	{
+    padding-left: 35px;
+    padding-right: 35px;
+  }
+
+}
+
+
+
+// paragraph--video
+.paragraph--video	{
+	padding: 90px 40px;
+	position: relative;
+
+	video	{
+		width: 100%;
+		height: auto;
+		cursor: pointer;
+	}
+
+	.video-js {
+    button.vjs-big-play-button  {
+
+      @include display-flex;
+      -webkit-flex-direction: row-reverse;
+      flex-direction: row-reverse;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-align-items: center;
+      align-items: center;
+
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+
+      height: 40px;
+      min-width: 200px;
+      width: auto;
+      max-width: 100%;
+      line-height: 1.15;
+      color: #fff;
+      background-color: $color-brand-red;
+      border: none;
+      border-radius: 18px;
+      padding: 0 20px;
+
+      &:focus {
+        outline: none;
+      }
+
+      .vjs-icon-placeholder  {
+        content: "";
+        width: 20px;
+        height: 20px;
+        background: url(../../images/icon-play-button.svg) 0 0 no-repeat;
+        margin-left: 5px;
+
+        &:before  {
+          content: '';
+        }
+      }
+      .vjs-control-text  {
+        clip: initial;
+        height: auto;
+        overflow: visible;
+        position: static;
+        width: auto;
+        font-size: 16px;
+        line-height: 1.15;
+      }
+    }
+    &.vjs-playing {
+      button.vjs-big-play-button  {
+        display: none;
+      }
+    }
+	}
+
+	.field-video.video-playing {
+	  button  {
+	    display: none;
+	  }
+	}
+
+	@media (max-width: 575.98px) {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+
+	button-text {
+	  display: none;
+	}
+
+}
+html.ff .vjs-control-text {
+  padding-top: 2px;
+}
+html.ie .vjs-control-text {
+  padding-top: 4px;
+}
+html.ie.ie11 .vjs-control-text {
+  padding-top: 6px;
+}
+
+
+
+// paragraph--view
+.paragraph--view	{
+}

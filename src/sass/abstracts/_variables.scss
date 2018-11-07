@@ -1,0 +1,21 @@
+// fonts
+$font-stack-default: 'MarkPro', "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", "宋体", SimSun, STXihei, "华文细黑", sans-serif;
+$font-stack-sans: $font-stack-default;
+
+$font-stack-sans-bold: 'MarkPro-Bold', "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", "宋体", SimSun, STXihei, "华文细黑", sans-serif;
+$font-stack-sans-italic: 'MarkPro-Italic', "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", "宋体", SimSun, STXihei, "华文细黑", sans-serif;
+$font-stack-sans-bold-italic: 'MarkPro-BoldItalic', "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", "宋体", SimSun, STXihei, "华文细黑", sans-serif;
+$font-stack-sans-heavy: 'MarkPro-Heavy', "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", "宋体", SimSun, STXihei, "华文细黑", sans-serif;
+$font-stack-sans-heavy-italic: 'MarkPro-HeavyItalic', "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", "宋体", SimSun, STXihei, "华文细黑", sans-serif;
+
+//$font-stack-default-zh: 'MarkPro', "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", "宋体", SimSun, STXihei, "华文细黑", sans-serif;
+
+$font-size-default: 18px;
+$default-body-copy-size: $font-size-default;
+$font-size-big-headline: 100px;
+
+
+// colours
+$color-brand-red: #E32927;
+$color-red: $color-brand-red;
+$box-max-width: 400px;

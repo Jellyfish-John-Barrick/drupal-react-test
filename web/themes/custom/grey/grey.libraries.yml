@@ -1,0 +1,148 @@
+# load main CSS
+global-css:
+  version: VERSION
+  css:
+    theme:
+      css/bootstrap-reboot.min.css: {}
+      css/bootstrap-grid.min.css: {}
+      css/main.min.css: {}
+      css/wysiwyg-shared.min.css: {}
+
+# load any foundational JS plus JQuery first
+global-js-weight-1:
+  version: VERSION
+  #header: true
+  js:
+    js/css_browser_selector.min.js: {}
+    js/blazy.min.js: {}
+    js/jquery.matchHeight.js: {}
+    js/scripts.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal.ajax
+    - core/drupal
+    - core/drupalSettings
+    - core/jquery.once
+
+# load language files
+#language-zh:
+#  css:
+#    base:
+#      '//fonts.googleapis.com/css?family=Open+Sans:400,400i,700': { external: true }
+
+
+
+
+
+#########################
+#
+# Paragraphs
+#
+#########################
+
+
+# code for all Paragraphs
+paragraphs:
+  version: VERSION
+  css:
+    theme:
+      templates/paragraphs/paragraphs.min.css: {}
+  js:
+    templates/paragraphs/paragraphs.js: {}
+  dependencies:
+    - grey/global-css
+    - grey/global-js-weight-1
+
+
+# Paragraph: boxes
+paragraph-boxes:
+  version: VERSION
+  css:
+    theme: {}
+  js: {}
+  dependencies:
+    - grey/paragraphs
+
+
+# Paragraph: hero
+paragraph-hero:
+  version: VERSION
+  css:
+    theme: {}
+  js: {}
+  dependencies:
+    - grey/paragraphs
+
+
+# Paragraph: image + headline
+paragraph-image-headline:
+  version: VERSION
+  css:
+    theme: {}
+  js: {}
+  dependencies:
+    - grey/paragraphs
+
+
+# Paragraph: image + text
+paragraph-image-text:
+  version: VERSION
+  css:
+    theme: {}
+  js: {}
+  dependencies:
+    - grey/paragraphs
+
+
+# Paragraph: text
+paragraph-text:
+  version: VERSION
+  css:
+    theme: {}
+  js: {}
+  dependencies:
+    - grey/paragraphs
+
+
+# Paragraph: video
+paragraph-video:
+  version: VERSION
+  css:
+    theme:
+      css/video-js.min.css: {}
+  js:
+    js/video.min.js: {}
+  dependencies:
+    - grey/paragraphs
+
+
+# Paragraph: view
+paragraph-view:
+  version: VERSION
+  css:
+    theme: {}
+  js: {}
+  dependencies:
+    - grey/paragraphs
+
+
+# Paragraph: webform
+paragraph-webform:
+  version: VERSION
+  css:
+    theme: {}
+  js: {}
+  dependencies:
+    - grey/paragraphs
+
+
+# Paragraph: from-library
+#paragraph-from-library:
+#  version: VERSION
+#  css:
+#    theme:
+#      templates/paragraphs/from-library/paragraph--from-library.min.css: {}
+#  js:
+#    templates/paragraphs/from-library/paragraph--from-library.js: {}
+#  dependencies:
+#    - grey/paragraphs

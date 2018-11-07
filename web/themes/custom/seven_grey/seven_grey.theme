@@ -1,0 +1,431 @@
+<?php
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Template\Attribute;
+use Drupal\views\Views;
+use Drupal\taxonomy\Entity\Term;
+use Drupal\webform\Utility\WebformFormHelper;
+
+
+
+function seven_grey_editor_js_settings_alter(array &$settings) {
+  foreach ($settings['editor']['formats'] as $name => $value) {
+    //$settings['editor']['formats'][$name]['editorSettings']['height'] = '1350px';
+    //$settings['editor']['formats'][$name]['editorSettings']['contentsLangDirection'] = 'rtl';
+    //kint($settings);
+  }
+}
+
+
+
+/**
+ *
+ * customize HTML
+ */
+function seven_grey_preprocess_html(&$variables) {
+
+  // if there is a node...
+  if ($node = \Drupal::routeMatch()->getParameter('node')) {
+
+    // add node id to body class
+    $variables['attributes']['class'][] = 'node-id-' . $node->id();
+
+    // add language id to body class
+    $variables['language'] = \Drupal::languageManager()->getCurrentLanguage()->getId();
+    $variables['attributes']['class'][] = 'lang-' . $variables['language'];
+
+    // if page has paragraphs, add class to BODY
+    if( $node->field_paragraphs_demo )	{
+    	//kint($node->field_paragraphs_demo);
+    	$variables['attributes']['class'][] = 'has-paragraphs';
+    }
+
+  }
+  else  {
+
+    // this is not a node, so tell the world
+    $variables['attributes']['class'][] = 'not-a-node';
+
+  }
+
+  // if page uses sidebar_right, add class to BODY
+  if( $variables['page']['sidebar_right'] )	{
+    $variables['attributes']['class'][] = 'has-sidebar-right';
+    //dump($node->field_paragraphs_demo);
+  }
+  //kint($variables['page']);
+
+	// error pages
+	$request = \Drupal::request();
+	$status = NULL;
+  if ($exception = $request->attributes->get('exception')) {
+    $status = $exception->getStatusCode();
+    $variables['attributes']['class'][] = 'error-page status-'.$status;
+  }
+
+  // add IE meta tag
+  $xuacompatible = [
+    '#tag' => 'meta',
+    '#attributes' => [
+      'http-equiv' => 'X-UA-Compatible',
+      'content' => 'IE=edge',
+    ],
+  ];
+  $variables['page']['#attached']['html_head'][] = [$xuacompatible, 'x-ua-compatible'];
+
+
+  // language sniff
+  $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
+  $variables['language'] = $language;
+
+
+  // domain sniff
+  $host = \Drupal::request()->getHost();
+  if (strpos($host, '.com') !== false) {
+    // this is a .com
+    $domain = '.com';
+  }
+  elseif (strpos($host, '.cn') !== false) {
+    // this is a .cn
+    $domain = '.cn';
+  }
+  elseif (strpos($host, 'localhost') !== false) {
+    // this is localhost
+    $domain = 'localhost';
+  }
+  $variables['domain'] = $domain;
+
+  //kint($language);
+
+}
+
+
+
+/**
+ *
+ * customize page
+ */
+function seven_grey_preprocess_page(&$variables) {
+
+  // add groovy libraries to home page
+  /*
+  if( $variables['is_front'] )	{
+  	$variables['#attached']['library'][] = 'habu/home-css';
+  	$variables['#attached']['library'][] = 'habu/home-js-weight-1';
+  	$variables['#attached']['library'][] = 'habu/home-js-weight-3';
+  	}
+  */
+
+  // set variable "has_paragraphs".
+  $variables['has_paragraphs'] = FALSE;
+
+  // if page is a node...
+  if ($node = \Drupal::routeMatch()->getParameter('node')) {
+
+    // if page has Paragraphs set variable TRUE so we can test inside twig
+    //if( $node->field_paragraphs_demo->count() > 0 )	{
+    if( $node->field_paragraphs_demo && !$node->field_paragraphs_demo->isEmpty() )	{
+      //kint($node->field_paragraphs_demo->count());
+      $variables['has_paragraphs'] = TRUE;
+    }
+
+  }
+
+
+  // language sniff
+  $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
+  $variables['language'] = $language;
+
+}
+
+
+
+
+/**
+ *
+ * customize page theme suggestions
+ */
+function seven_grey_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+
+  // Add content type template suggestions
+  if ($node = \Drupal::routeMatch()->getParameter('node')) {
+    array_splice($suggestions, 1, 0, 'page__' . $node->getType());
+  }
+
+  // Add taxonomy vocabulary template suggestions
+  if ( $tid = \Drupal::routeMatch()->getRawParameter('taxonomy_term') ) {
+
+    $term = Term::load($tid);
+    if (!empty($term)) {
+			$vid = $term->vid->getValue();
+			$suggestions[] = 'page__taxonomy__vocabulary__' . $vid[0]['target_id'];
+			//kint($vid);
+		}
+
+  }
+
+}
+
+
+
+function seven_grey_theme_suggestions_alter(array &$suggestions, array $variables) {
+
+	// Add form ID template suggestions
+	if (isset($variables['element']) && isset($variables['element']['#type']) && $variables['element']['#type'] == 'form') {
+
+    $original_theme_hook = $variables['theme_hook_original'];
+    $suggestions[] = $original_theme_hook . '__' . str_replace('-', '_', $variables['element']['#id']);
+
+  	}
+
+  return $suggestions;
+
+}
+
+
+
+/**
+ *
+ * customize regions
+ */
+function seven_grey_preprocess_region(&$variables) {
+
+	$region = $variables['elements']['#region'];
+
+	// Add region classes
+	$variables['attributes']['class'][] = 'region';
+	$variables['attributes']['class'][] = 'region--' . $region;
+	//kint($variables['content']);
+
+}
+
+
+
+
+
+/**
+ *
+ * customize paragraph
+ */
+function seven_grey_preprocess_paragraph(&$variables) {
+
+  // make node type available to Paragraphs
+  if ($node = \Drupal::routeMatch()->getParameter('node')) {
+    $variables['node_type'] = $node->getType();
+  }
+
+}
+
+
+
+
+
+/**
+ *
+ * customize fields
+ */
+function seven_grey_preprocess_field(&$variables) {
+
+  $element = $variables['element'];
+  //kint($variables);
+
+  // project-dependent code to set Paragraph ID variable
+  if (isset($element['#field_name']) && isset($element['#entity_type'])) {
+    if ( ($element['#field_name'] == 'field_header') && ($element['#entity_type'] == 'paragraph') ) {
+    	$variables['paragraph_id'] = $variables['element']['#object']->id();
+    }
+  }
+
+}
+
+
+
+
+/**
+ *
+ * customize forms
+ */
+function seven_grey_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+
+  $id = $form['#form_id'];
+
+	// add wrapper around all form actions
+	$form['actions']['#prefix'] = '<div class="form--actions">';
+  $form['actions']['#suffix'] = '</div>';
+
+  // add wrapper to each form action
+  foreach ($form['actions'] as $key => $value)	{
+  	//$key = key($form_action);
+		//echo '<pre>'; print_r( $key ); echo ' </pre>';
+		if ( ($key != '#prefix') && ($key != '#suffix') && ($key != '#type') && ($key != '#theme') )	{
+			if ( $form['actions'][$key]['#prefix'] = '<span class="form--actions--' . $key . '">' );
+			if ( $form['actions'][$key]['#suffix'] = '</span>' );
+			//echo '<pre>'; print_r( $form['actions'][$key] ); echo ' </pre>';
+		}
+  }
+
+	// add class to Cancel button
+	//$form['actions']['submit']['#attributes']['class'][] = 'button-inverse';
+
+	//
+	if (!empty($form['basic']) && !empty($form['basic']['submit']))  {
+	  $form['basic']['submit']['#attributes']['class'][] = 'button-inverse';
+	}
+
+	//kint($form);
+
+}
+
+
+
+
+
+
+
+
+/**
+ * Implements hook_preprocess_block().
+ */
+function seven_grey_preprocess_block(&$variables) {
+
+  // add block id
+  $variables['content']['#attributes']['block'] = $variables['attributes']['id'];
+
+  // helping views and drupal
+  if (isset($variables['content']['#type']) && $variables['content']['#type'] == 'view')	{
+
+  	// add class when block is a "view block"
+  	$variables['is_a_view_block'] = TRUE;
+  	$variables['attributes']['class'][] = 'is-a-view-block';
+
+  	// help drupal know when a view is empty... DOH!
+  	$results = 0;
+		foreach($variables['content']['view_build']['#rows'] as $key=>$value)	{ $results++; }
+		if ($results < 1)	{
+			$variables['view_is_empty'] = TRUE;
+  	$variables['attributes']['class'][] = 'view-is-empty';
+		}
+
+  }
+
+  //kint($variables);
+
+}
+
+
+
+
+
+
+
+
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function seven_grey_theme_suggestions_menu_alter(array &$suggestions, array $variables) {
+
+  // Remove the block and replace dashes with underscores in the block ID to
+  // use for the hook name.
+  if (isset($variables['attributes']['block'])) {
+    $hook = str_replace(array('block-', '-'), array('', '_'),    $variables['attributes']['block']);
+    $suggestions[] = $variables['theme_hook_original'] . '__' . $hook;
+  }
+
+}
+
+
+
+
+
+/**
+ * Implements hook_theme_preprocess_image().
+ */
+function seven_grey_preprocess_image(&$variables) {
+
+  /*  BLAZY
+  $trans_gif = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='; // transparent gif SRC
+  $old_src = $variables['attributes']['src']; // original image SRC
+  $variables['attributes']['class'][] = 'b-lazy'; // add BLazy
+  $variables['attributes']['src'] = $trans_gif; // change SRC from original to transparent GIF
+  $variables['attributes']['data-src'] = $old_src;  // stash original SRC for BLazy
+  */
+
+}
+
+
+
+
+
+function seven_grey_preprocess_item_list__search_results(&$variables) {
+  $variables['empty']['#markup'] = '<p>' . t('Your search yielded no results.') . '</p>';
+}
+
+
+
+
+
+/**
+ * Use language code for the language switcher
+ *
+ * @param $variables
+ */
+function seven_grey_preprocess_links__language_block(&$variables) {
+
+  $currentLanguageCode = \Drupal::languageManager()
+    ->getCurrentLanguage()
+    ->getId();
+  $variables['language'] = $currentLanguageCode;
+  //kint($currentLanguageCode);
+
+
+  // domain sniff
+  $host = \Drupal::request()->getHost();
+  $variables['host'] = $host;
+
+  foreach ($variables['links'] as $i => $link) {
+    if($link['link']['#options']['language']->get('id') == 'en'):
+      $path = '/'.$link['link']['#url']->getInternalPath();
+      $langcode = 'en';
+      $path_alias = \Drupal::service('path.alias_manager')->getAliasByPath($path, $langcode);
+      $variables['page_url'] = $path_alias;
+      //kint($path_alias);
+    endif;
+
+  }
+
+  //kint($variables);
+
+}
+
+
+
+
+/**
+ * taken from Seven...
+ */
+function seven_grey_preprocess_menu_local_tasks(&$variables) {
+  if (!empty($variables['primary'])) {
+    $variables['primary']['#attached'] = [
+      'library' => [
+        'seven/drupal.nav-tabs',
+      ],
+    ];
+  }
+  elseif (!empty($variables['secondary'])) {
+    $variables['secondary']['#attached'] = [
+      'library' => [
+        'seven/drupal.nav-tabs',
+      ],
+    ];
+  }
+}
+
+/**
+ * taken from Seven....
+ */
+function seven_grey_preprocess_menu_local_task(&$variables) {
+  $variables['attributes']['class'][] = 'tabs__tab';
+}
+
+

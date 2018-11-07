@@ -1,0 +1,100 @@
+.region--header nav ul  {
+  margin-bottom: 0;
+}
+.region--header nav li.menu-item  {
+  list-style-type: none;
+  display: inline-block;
+}
+.region--header nav li a  {
+  display: block;
+  border: 1px solid #000;
+  border-bottom: none;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  padding: 5px 10px;
+}
+
+
+
+
+
+main > .container {
+  display: flex;
+}
+
+
+
+.region--content,
+body.has-sidebar-right .region--content  {
+  width: 70%;
+}
+
+
+
+.region--sidebar_right,
+.region--sidebar-right-react  {
+  width: 30%;
+  margin-left: 40px;
+  padding: 20px 40px;
+  border: 1px solid #ccc;
+}
+.region--sidebar_right .block,
+.region--sidebar-right-react .block  {
+  margin-bottom: 40px;
+}
+
+
+
+
+
+#react--view--articles--by-tag  {
+  padding-right: 40px;
+}
+.view-filter  {
+  width: 200px;
+  position: relative;
+}
+.view-filter .view-filter--title  {
+  padding: 0 11px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+.view-filter .view-filter--title h3  {
+  display: inline-block;
+  margin-right: 11px;
+}
+.view-filter .view-filter--title .active-tag  {
+  display: inline-block;
+}
+.view-filter .view-filter--title,
+.view-filter .view-filter--tag-options  {
+  display: block;
+}
+.view-filter .view-filter--tag-options ul  {
+  position: absolute;
+  z-index: 2;
+  display: none;
+  background: #eee;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+.view-filter.is-open .view-filter--tag-options ul  {
+  display: block;
+}
+.view-filter .view-filter--tag-options li  {
+  list-style-type: none;
+  display: block;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.view-filter .view-filter--tag-options li:hover  {
+  background-color: rgb(0,0,0,.1);
+}
+.view-filter .view-filter--tag-options li.active:after  {
+  content: "(active)";
+  font-size: 10px;
+  color: #666;
+  float: right;
+}
+

@@ -1,0 +1,20 @@
+<?php
+
+function seven_jf_editor_js_settings_alter(array &$settings) {
+  foreach ($settings['editor']['formats'] as $name => $value) {
+    //$settings['editor']['formats'][$name]['editorSettings']['height'] = '1350px';
+    //$settings['editor']['formats'][$name]['editorSettings']['contentsLangDirection'] = 'rtl';
+    //kint($settings);
+  }
+}
+
+
+
+function seven_jf_preprocess_html(&$variables) {
+
+  //kint(\Drupal::entityManager()->getStorage('block_content'));
+  // onEntityTypeCreate
+  // setEntityType
+
+}
+

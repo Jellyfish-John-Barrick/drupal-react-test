@@ -1,0 +1,19 @@
+new.mobile:
+  label: mobile
+  mediaQuery: '(min-width: 0px)'
+  weight: 0
+  multipliers:
+   - 1x
+new.narrow:
+  label: narrow
+  mediaQuery: 'all and (min-width: 575.98px) and (max-width: 1023.98px)'
+  weight: 1
+  multipliers:
+    - 1x
+new.wide:
+  label: wide
+  mediaQuery: 'all and (min-width: 1024px)'
+  weight: 2
+  multipliers:
+    - 1x
+

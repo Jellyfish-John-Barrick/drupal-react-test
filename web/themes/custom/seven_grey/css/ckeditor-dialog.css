@@ -1,0 +1,14 @@
+/*
+.cke_reset_all .cke_resizer {
+   display: block;
+ }
+.cke_reset_all .cke_dialog .cke_resizer {
+   display: none;
+ }
+*/
+
+.cke_panel.cke_combopanel__styles	{
+	width: 100%;
+	max-width: 400px;
+	height: 250px;
+}

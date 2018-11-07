@@ -1,0 +1,107 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a set of links.
+ *
+ * Available variables:
+ * - attributes: Attributes for the UL containing the list of links.
+ * - links: Links to be output.
+ *   Each link will have the following elements:
+ *   - title: The link text.
+ *   - url: The link URL. If omitted, the 'title' is shown as a plain text
+ *     item in the links list. If 'url' is supplied, the entire link is passed
+ *     to l() as its $options parameter.
+ *   - attributes: (optional) HTML attributes for the anchor, or for the <span>
+ *     tag if no 'url' is supplied.
+ * - heading: (optional) A heading to precede the links.
+ *   - text: The heading text.
+ *   - level: The heading level (e.g. 'h2', 'h3').
+ *   - attributes: (optional) A keyed list of attributes for the heading.
+ *   If the heading is a string, it will be used as the text of the heading and
+ *   the level will default to 'h2'.
+ *
+ *   Headings should be used on navigation menus and any list of links that
+ *   consistently appears on multiple pages. To make the heading invisible use
+ *   the 'visually-hidden' CSS class. Do not use 'display:none', which
+ *   removes it from screen readers and assistive technology. Headings allow
+ *   screen reader and keyboard only users to navigate to or skip the links.
+ *   See http://juicystudio.com/article/screen-readers-display-none.php and
+ *   http://www.w3.org/TR/WCAG-TECHS/H42.html for more information.
+ *
+ * @see template_preprocess_links()
+ *
+ * @ingroup themeable
+ */
+#}{# 'language', 'host' and 'page_url' variables added in habu.theme #}
+{% if page_url == '/' %}{% set page_url = '' %}{% endif %}
+
+{# set environment to production as default #}
+{% set environment = 'prod' %}
+
+{% if (host == 'localhost') %}
+  {% set environment = 'local' %}
+{% elseif (host == 'uat.habufit.com') or (host == 'cn-uat.habufit.com') %}
+  {% set environment = 'uat' %}
+{% endif %}
+
+{% if links -%}
+  {%- if heading -%}
+    {%- if heading.level -%}
+      <{{ heading.level }}{{ heading.attributes }}>{{ heading.text }}</{{ heading.level }}>
+    {%- else -%}
+      <h2{{ heading.attributes }}>{{ heading.text }}</h2>
+    {%- endif -%}
+  {%- endif -%}
+
+  <div class="toggle-container lang-{{ language }}">
+    <span class="language-active"></span>
+    <span class="language-flag">Flag</span>
+    {%- for item in links -%}
+      {%- if item.link -%}
+        {% if item.link['#options'].language.id == language %}
+        <span class="language-label">{{ item.link['#title'] }}</span>
+        {% endif %}
+      {%- endif -%}
+    {%- endfor -%}
+    <span class="language-toggle">{{ 'Click to see language options'|trans }}</span>
+  </div>
+
+  <div class="content-container">
+    <ul{{ attributes }}>
+      {%- for item in links -%}
+        <li{{ item.attributes }}>
+          {%- if item.link -%}
+            {# item.link #}
+            {% set language_id = (item.link['#options'].language.id|raw) %}
+            {% if language_id == 'en' %}
+              {# this link is english... #}
+              {% set language_path = '/en-us' %}
+              {% if environment == 'prod' %}
+                {% set host_url = 'https://www.habufit.com' %}
+              {% elseif environment == 'uat' %}
+                {% set host_url = 'https://uat.habufit.com' %}
+              {% endif %}
+            {% else %}
+              {# this link is NOT english... #}
+              {% set language_path = '/' ~ language_id %}
+              {% if environment == 'prod' %}
+                {% set host_url = 'https://www.habufit.cn' %}
+              {% elseif environment == 'uat' %}
+                {% set host_url = 'https://cn-uat.habufit.com' %}
+              {% endif %}
+            {% endif %}
+            <a href="{{ host_url }}{{ language_path }}{{ page_url }}" class="{{ item.link['#options'].attributes.class|join(' ') }}" hreflang="{{ item.link['#options'].language.id }}" data-drupal-link-system-path="{{ item.link['#url'].internalpath }}" >
+              <span class="language-active"></span>
+              <span class="language-flag">Flag</span>
+              <span class="language-label">{{ item.link['#title'] }}</span>
+            </a>
+          {%- elseif item.text_attributes -%}
+            <span{{ item.text_attributes }}>{{ item.text }}</span>
+          {%- else -%}
+            {{ item.text }}
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+{%- endif %}

@@ -1,0 +1,19 @@
+global-styling:
+  version: VERSION
+  css:
+    theme:
+      css/custom.css: {}
+  js:
+    js/custom.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal.ajax
+    - core/drupal
+    - core/drupalSettings
+    - core/jquery.once
+
+ckeditor-dialog:
+  version: VERSION
+  css:
+    theme:
+      css/ckeditor-dialog.css: {}

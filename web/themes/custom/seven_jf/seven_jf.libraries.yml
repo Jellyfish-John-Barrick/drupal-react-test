@@ -1,0 +1,13 @@
+global-styling:
+  version: VERSION
+  css:
+    theme:
+      css/custom.css: {}
+  js:
+    js/custom.js: {}
+
+ckeditor-dialog:
+  version: VERSION
+  css:
+    theme:
+      css/ckeditor-dialog.css: {}

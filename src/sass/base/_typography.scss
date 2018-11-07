@@ -1,0 +1,260 @@
+@font-face {
+  font-family: 'MarkPro';
+  font-weight: 400;
+  src: url('../fonts/MarkPro/fontfont-markpro.eot'); /* IE9 Compat Modes */
+  src: url('../fonts/MarkPro/fontfont-markpro.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+        url('../fonts/MarkPro/fontfont-markpro.woff2') format('woff2'), /* Super Modern Browsers */
+        url('../fonts/MarkPro/fontfont-markpro.woff') format('woff'), /* Pretty Modern Browsers */
+        url('../fonts/MarkPro/fontfont-markpro.ttf')  format('truetype'), /* Safari, Android, iOS */
+        url('../fonts/MarkPro/fontfont-markpro.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+@font-face {
+  font-family: 'MarkPro-Bold';
+  font-weight: 400;
+  src: url('../fonts/MarkPro/fontfont-markpro-bold.eot'); /* IE9 Compat Modes */
+  src: url('../fonts/MarkPro/fontfont-markpro-bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+        url('../fonts/MarkPro/fontfont-markpro-bold.woff2') format('woff2'), /* Super Modern Browsers */
+        url('../fonts/MarkPro/fontfont-markpro-bold.woff') format('woff'), /* Pretty Modern Browsers */
+        url('../fonts/MarkPro/fontfont-markpro-bold.ttf')  format('truetype'), /* Safari, Android, iOS */
+        url('../fonts/MarkPro/fontfont-markpro-bold.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+@font-face {
+  font-family: 'MarkPro-Italic';
+  font-weight: 400;
+  src: url('../fonts/MarkPro/fontfont-markpro-italic.eot'); /* IE9 Compat Modes */
+  src: url('../fonts/MarkPro/fontfont-markpro-italic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+        url('../fonts/MarkPro/fontfont-markpro-italic.woff2') format('woff2'), /* Super Modern Browsers */
+        url('../fonts/MarkPro/fontfont-markpro-italic.woff') format('woff'), /* Pretty Modern Browsers */
+        url('../fonts/MarkPro/fontfont-markpro-italic.ttf')  format('truetype'), /* Safari, Android, iOS */
+        url('../fonts/MarkPro/fontfont-markpro-italic.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+@font-face {
+  font-family: 'MarkPro-BoldItalic';
+  font-weight: 400;
+  src: url('../fonts/MarkPro/fontfont-markpro-bolditalic.eot'); /* IE9 Compat Modes */
+  src: url('../fonts/MarkPro/fontfont-markpro-bolditalic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+        url('../fonts/MarkPro/fontfont-markpro-bolditalic.woff2') format('woff2'), /* Super Modern Browsers */
+        url('../fonts/MarkPro/fontfont-markpro-bolditalic.woff') format('woff'), /* Pretty Modern Browsers */
+        url('../fonts/MarkPro/fontfont-markpro-bolditalic.ttf')  format('truetype'), /* Safari, Android, iOS */
+        url('../fonts/MarkPro/fontfont-markpro-bolditalic.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+@font-face {
+  font-family: 'MarkPro-Heavy';
+  font-weight: 400;
+  src: url('../fonts/MarkPro/fontfont-markpro-heavy.eot'); /* IE9 Compat Modes */
+  src: url('../fonts/MarkPro/fontfont-markpro-heavy.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+        url('../fonts/MarkPro/fontfont-markpro-heavy.woff2') format('woff2'), /* Super Modern Browsers */
+        url('../fonts/MarkPro/fontfont-markpro-heavy.woff') format('woff'), /* Pretty Modern Browsers */
+        url('../fonts/MarkPro/fontfont-markpro-heavy.ttf')  format('truetype'), /* Safari, Android, iOS */
+        url('../fonts/MarkPro/fontfont-markpro-heavy.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+@font-face {
+  font-family: 'MarkPro-HeavyItalic';
+  font-weight: 400;
+  src: url('../fonts/MarkPro/fontfont-markpro-heavyitalic.eot'); /* IE9 Compat Modes */
+  src: url('../fonts/MarkPro/fontfont-markpro-heavyitalic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+        url('../fonts/MarkPro/fontfont-markpro-heavyitalic.woff2') format('woff2'), /* Super Modern Browsers */
+        url('../fonts/MarkPro/fontfont-markpro-heavyitalic.woff') format('woff'), /* Pretty Modern Browsers */
+        url('../fonts/MarkPro/fontfont-markpro-heavyitalic.ttf')  format('truetype'), /* Safari, Android, iOS */
+        url('../fonts/MarkPro/fontfont-markpro-heavyitalic.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+
+// defaults
+body	{
+	font-family: $font-stack-default;
+	letter-spacing: -.01em;
+}
+:lang(zh-Hans) 	{
+  //font-family: $font-stack-default-zh;
+  }
+
+body,
+h1.font-mimic-body,
+h2.font-mimic-body,
+h3.font-mimic-body,
+h4.font-mimic-body,
+h5.font-mimic-body,
+h6.font-mimic-body	{
+	font-size: $default-body-copy-size;
+	line-height: 1.5;
+	margin-bottom: 0;
+}
+
+h1,
+.font-mimic-h1,
+h2.font-mimic-h1,
+h3.font-mimic-h1,
+h4.font-mimic-h1,
+h5.font-mimic-h1,
+h6.font-mimic-h1	{
+	font-family: $font-stack-sans-heavy;
+	color: $color-brand-red;
+	font-size: 56px;
+	line-height: 1;
+	letter-spacing: -.03em;
+	margin-bottom: calc(.67em - 24px);
+	@media (max-width: 991.98px) {
+		margin-bottom: .3em
+	}
+	@media (max-width: 575.98px) {
+		font-size: 48px;
+	}
+	@media (max-width: 467.98px) {
+		//font-size: 32px;
+	}
+}
+h2,
+.font-mimic-h2,
+h1.font-mimic-h2,
+h3.font-mimic-h2,
+h4.font-mimic-h2,
+h5.font-mimic-h2,
+h6.font-mimic-h2,
+.font-mimic-black-h2	{
+	font-family: $font-stack-sans-heavy;
+
+	/***  following mimics non-hero H1  ***/
+	color: $color-brand-red;
+	font-size: 56px;
+	line-height: 1;
+	letter-spacing: -.03em;
+	margin-bottom: calc(.67em - 24px);
+	/**********  end mimic  ***************/
+
+	//font-size: 52px; /* inital h2 setup smaller than non-hero H1 */
+	@media (max-width: 575.98px) {
+		//font-size: 48px; /* inital h2 setup smaller than non-hero H1 */
+	}
+	@media (max-width: 467.98px) {
+		//font-size: 32px;
+	}
+}
+,
+.font-mimic-black-h2  {
+  color: #000;
+}
+
+h3,
+.font-mimic-h3,
+h1.font-mimic-h3,
+h2.font-mimic-h3,
+h4.font-mimic-h3,
+h5.font-mimic-h3,
+h6.font-mimic-h3	{
+	font-family: $font-stack-sans-heavy;
+	font-size: 44px;
+	margin-bottom: .5rem;
+	@media (max-width: 991.98px) {
+		font-size: 28px;
+	}
+}
+h4,
+.font-mimic-h4,
+h1.font-mimic-h4,
+h2.font-mimic-h4,
+h3.font-mimic-h4,
+h5.font-mimic-h4,
+h6.font-mimic-h4	{
+	font-family: $font-stack-sans-heavy;
+	font-size: 34px;
+	@media (max-width: 991.98px) {
+		font-size: 24px;
+	}
+	margin-bottom: .1rem;
+}
+h5,
+.font-mimic-h5,
+h1.font-mimic-h5,
+h2.font-mimic-h5,
+h3.font-mimic-h5,
+h4.font-mimic-h5,
+h6.font-mimic-h5	{
+	font-family: $font-stack-sans-heavy;
+	font-size: 26px;
+	@media (max-width: 991.98px) {
+		font-size: 20px;
+	}
+}
+h6,
+.font-mimic-h6,
+h1.font-mimic-h6,
+h2.font-mimic-h6,
+h3.font-mimic-h6,
+h4.font-mimic-h6,
+h5.font-mimic-h6	{
+	font-family: $font-stack-sans-bold;
+	font-size: 18px;
+}
+
+b, strong	{
+	font-weight: 400;
+	font-family: $font-stack-sans-bold;
+}
+
+
+
+
+/* IE11 cuts off font ascenders of MarkPro */
+html.ie11 h1,
+html.ie11 .font-mimic-h1,
+html.ie11 h2.font-mimic-h1,
+html.ie11 h3.font-mimic-h1,
+html.ie11 h4.font-mimic-h1,
+html.ie11 h5.font-mimic-h1,
+html.ie11 h6.font-mimic-h1,
+html.ie11 h2,
+html.ie11 .font-mimic-h2,
+html.ie11 h1.font-mimic-h2,
+html.ie11 h3.font-mimic-h2,
+html.ie11 h4.font-mimic-h2,
+html.ie11 h5.font-mimic-h2,
+html.ie11 h6.font-mimic-h2,
+html.ie11 .font-mimic-black-h2  {
+  line-height: 1.15
+}
+
+
+
+
+// For Chinese, Japanese and Korean text words are not broken.
+// source: https://css-tricks.com/almanac/properties/w/word-break/
+
+html[lang='ko'] {
+  h1, h2, h3, h4, h5,
+  p, span, button
+  em, i, strong, b,
+  ul, li,
+  table, th, td,
+  div, section, article,
+  // header, footer,
+  a {
+    word-break: keep-all;  // from pid.samsungdisplay.cn for KO, not Chinese
+  }
+
+  h1,
+  .font-mimic-h1,
+  h2.font-mimic-h1,
+  h3.font-mimic-h1,
+  h4.font-mimic-h1,
+  h5.font-mimic-h1,
+  h6.font-mimic-h1,
+
+  h2,
+  .font-mimic-h2,
+  h1.font-mimic-h2,
+  h3.font-mimic-h2,
+  h4.font-mimic-h2,
+  h5.font-mimic-h2,
+  h6.font-mimic-h2,
+  .font-mimic-black-h2  {
+    line-height: 1.15;
+  }
+
+}
+

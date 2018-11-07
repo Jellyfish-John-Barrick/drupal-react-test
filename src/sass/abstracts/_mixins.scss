@@ -1,0 +1,73 @@
+@mixin responsive-image	{
+	max-width: 100%;
+	height: auto;
+}
+
+@mixin clear  {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+	}
+}
+
+@mixin display-flex	{
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+}
+
+@mixin paragraph-padding-18 {
+    padding-left: 18px;
+    padding-right: 18px;
+}
+@mixin paragraph-padding-28 {
+    padding-left: 28px;
+    padding-right: 28px;
+    @media (max-width: 575.98px) {
+      padding-left: 7px;
+      padding-right: 7px;
+    }
+}
+@mixin paragraph-padding-40 {
+    padding-left: 40px;
+    padding-right: 40px;
+    @media (max-width: 575.98px) {
+      padding-left: 18px;
+      padding-right: 18px;
+    }
+}
+
+
+@mixin big-headline	{
+	font-size: $font-size-big-headline;
+	line-height: 1;
+	@media (max-width: 991.98px) {
+		font-size: 80px;
+	}
+	@media (max-width: 767.98px) {
+		font-size: 56px;
+	}
+	@media (max-width: 575.98px) {
+		font-size: 48px;
+	}
+	@media (max-width: 467.98px) {
+		//font-size: 32px;
+	}
+}
+
+@mixin visually-hidden {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+}
+
+

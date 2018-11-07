@@ -1,0 +1,40 @@
+name: Grey
+type: theme
+description: 'A custom theme for greyscreening'
+package: Core
+# version: VERSION
+core: 8.x
+base theme: false
+screenshot: screenshot.jpg
+
+regions:
+  header_content: Header content, left
+  header_content_right: Header content, right
+  local_tasks: Local tasks (admin tabs)
+  help: Help
+  main_page_title: Main page title (H1)
+  content_before: Before main content
+  content: Main content
+  content_after: After main content
+  footer_content: Footer content
+  hidden: Hidden
+
+libraries:
+  - grey/global-css
+  - grey/global-js-weight-1
+  #- grey/global-js-weight-2
+  #- grey/global-js-weight-3
+
+ckeditor_stylesheets:
+  #- css/wysiwyg-shared.min.css
+  - css/wysiwyg-only.min.css
+
+stylesheets-remove:
+  # - core/assets/vendor/normalize-css/normalize.css
+  # - core/modules/system/css/system.module.css
+  # - core/modules/system/css/system.theme.css
+  # - core/modules/views/css/views.module.css
+  # - core/assets/vendor/jquery.ui/themes/base/theme.css
+  # - core/assets/vendor/jquery.ui/themes/base/tabs.css
+  # - core/assets/vendor/jquery.ui/themes/base/accordion.css
+  # - core/modules/system/css/components/fieldgroup.module.css
